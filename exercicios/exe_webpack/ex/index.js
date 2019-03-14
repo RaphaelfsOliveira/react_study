@@ -1,2 +1,4 @@
-console.log('webpack');
-console.log('test');
+import Person from './person';
+
+const person = new Person('Joao');
+console.log(person.toString());
