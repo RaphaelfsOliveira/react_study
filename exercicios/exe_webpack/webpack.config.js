@@ -9,5 +9,16 @@ module.exports = {
   devServer: {
     port: 8090,
     contentBase: './public'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      }
+    ]
   }
 };
