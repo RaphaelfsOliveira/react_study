@@ -4,7 +4,7 @@
   "description": "exercicios usando o react",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --progress --open --colors --inline --hot"
   },
   "author": "Raphael Oliveira",
   "license": "ISC",
