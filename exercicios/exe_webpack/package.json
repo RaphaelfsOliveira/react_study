@@ -1,13 +1,13 @@
 {
   "name": "exe_webpack",
   "version": "1.0.0",
-  "description": "",
+  "description": "test project",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --progress --open --colors --inline --hot"
   },
   "keywords": [],
-  "author": "",
+  "author": "Raphael Oliveira",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
