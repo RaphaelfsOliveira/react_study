@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Primeiro = props => (
-  <h1>Primeiro Componente! {props.value}</h1>
-);
-
-const Segundo = props => (
-  <h1>Segundo Componente! {props.value}</h1>
-);
-
-export {Primeiro, Segundo};
+export default class ClassComponent extends Component {
+  render() {
+    return (
+      <h1>{this.props.value}</h1>
+    )
+  }
+}
