@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class ContadorComponent extends Component {
+export default class Contador extends Component {
   constructor(props) {
     super(props);
     this.state = {value: props.initialValue}
