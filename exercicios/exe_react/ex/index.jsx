@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ClassComponent from './component';
+import ContadorComponent from './contador';
 
 
 ReactDOM.render(
-  <ClassComponent label='Contator' initialValue={10} />
+  <ContadorComponent label='Contator' initialValue={10} />
   , document.getElementById('app')
+);
+
+ReactDOM.render(
+  <ContadorComponent label='Contator2' initialValue={1000} />
+  , document.getElementById('app2')
 );
