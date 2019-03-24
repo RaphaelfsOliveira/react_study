@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ContadorComponent from './contador';
+import Contador from './contador';
+import Field from './field';
 
 
 ReactDOM.render(
-  <ContadorComponent label='Contator' initialValue={10} />
+  <Contador label='Contator' initialValue={10} />
   , document.getElementById('app')
 );
 
 ReactDOM.render(
-  <ContadorComponent label='Contator2' initialValue={1000} />
+  <Field initialValue='escreva aqui' />
   , document.getElementById('app2')
 );
