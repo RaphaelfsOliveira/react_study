@@ -1,25 +1,27 @@
 version: "2"
 services:
   node:
-    # image: "node:latest"
-    # user: "node"
-    # working_dir: /usr/src/app
+    image: "node:latest"
+    user: "node"
+    working_dir: /usr/src/app
     container_name: Play_Node_Mark_I
     restart: always
-    build: .
-    # environment:
-    #   - NODE_ENV=production
-    # volumes:
-    #   - ./:/usr/src/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./:/usr/src/app
     ports:
       - "8090:8090"
+      - "80:80"
     command: "npm run dev"
     links:
       - mongo
   mongo:
     container_name: Play_Mongo_Mark_I
     image: mongo
+    # ports:
+    #   - "27017:27017"
     volumes:
-      - ./data:/data/db
-    ports:
-      - "27017:27017"
+      - ./data/mongo:/data/db
+    expose:
+      - "27017"
