@@ -11,7 +11,7 @@ services:
     volumes:
       - ./:/usr/src/app
     ports:
-      - "8090:8090"
+      - "8000:8000"
       - "80:80"
     command: "npm run dev"
     links:
@@ -19,8 +19,8 @@ services:
   mongo:
     container_name: Play_Mongo_Mark_I
     image: mongo
-    # ports:
-    #   - "27017:27017"
+    ports:
+      - "27017:27017"
     volumes:
       - ./data/mongo:/data/db
     expose:
