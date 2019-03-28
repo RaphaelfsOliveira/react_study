@@ -1,0 +1,25 @@
+{
+  "name": "todo-app-project",
+  "version": "1.0.0",
+  "description": "\"Lista de tarefas\"",
+  "main": "app/loader.js",
+  "scripts": {
+    "dev": "nodemon",
+    "production": "pm2 start app/loader.js --name todo-app"
+  },
+  "keywords": [
+    "API"
+  ],
+  "author": "Raphael Oliveira",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.20",
+    "node-restful": "^0.2.6",
+    "pm2": "^3.4.1"
+  }
+}
