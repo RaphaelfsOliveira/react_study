@@ -15,3 +15,5 @@ app.use(bodyParser.json());
 app.listen(port, () => {
   console.log(`Backend RESTFull API is running on port ${port}`);
 });
+
+module.exports = app;
