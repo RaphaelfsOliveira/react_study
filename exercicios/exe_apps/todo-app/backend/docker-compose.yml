@@ -1,17 +1,18 @@
 version: "2"
 services:
   node:
-    image: "node:latest"
-    user: "node"
-    working_dir: /home/node/app
+    # image: "node:latest"
+    # user: "node"
+    # working_dir: /usr/src/app
     container_name: Play_Node_Mark_I
     restart: always
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./:/home/node/app
+    build: .
+    # environment:
+    #   - NODE_ENV=production
+    # volumes:
+    #   - ./:/usr/src/app
     ports:
-      - 8090:8090
+      - "8090:8090"
     command: "npm run dev"
     links:
       - mongo
