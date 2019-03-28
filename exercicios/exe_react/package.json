@@ -4,7 +4,8 @@
   "description": "exercicios usando o react",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --progress --open --colors --inline --hot"
+    "dev": "webpack-dev-server --progress --open --colors --inline --hot",
+    "start": ""
   },
   "author": "Raphael Oliveira",
   "license": "ISC",
