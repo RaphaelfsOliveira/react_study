@@ -11,3 +11,7 @@ RUN npm install
 COPY . /usr/src/app
 
 EXPOSE 3000
+
+ENV NAME play_test_proj
+
+CMD ["npm run dev"]
