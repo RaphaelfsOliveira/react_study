@@ -5,7 +5,10 @@
   "main": "api/loader.js",
   "scripts": {
     "dev": "nodemon loader.js",
-    "production": "pm2 start api/loader.js --name todo-backend"
+    "production": "pm2 start loader.js -i 3 --name todo-backend",
+    "stop": "pm2 stop all",
+    "kill": "pm2 kill",
+    "monit": "pm2 monit"
   },
   "keywords": [
     "API"
