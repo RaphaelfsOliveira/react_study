@@ -1,0 +1,17 @@
+config:
+  target: "http://localhost:8000"
+  phases:
+    - duration: 60
+      arrivalRate: 50
+      name: "The Begin"
+    - duration: 60
+      arrivalRate: 50
+      rampTo: 100
+      name: "Warm up"
+    - duration: 60
+      arrivalRate: 2000
+      name: "Max load"
+scenarios:
+  - flow:
+      - get:
+          url: "/api/todos"
