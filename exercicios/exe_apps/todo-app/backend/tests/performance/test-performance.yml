@@ -1,3 +1,5 @@
+# Teste de performance da API com https://artillery.io/ rodar comando abaixo no terminal
+# artillery run tests/performance/test-performance.yml
 config:
   target: "http://localhost:8000"
   phases:
