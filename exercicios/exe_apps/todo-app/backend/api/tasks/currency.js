@@ -5,8 +5,7 @@ Currency = mongoose.model('Currency');
 // TASKS
 const mongoTask = `[Task Mongo DB]`;
 
-const coins = ["AUD", "EUR", "USD", "GBP", "BTC", "CAD",
-              "ARS", "LTC", "JPY", "USDT", "CHF"];
+const coins = ["AUD", "EUR", "USD", "GBP", "BTC", "CAD", "ARS", "LTC", "JPY", "CHF"];
 
 const configAPIcall = {
   uri: 'https://economia.awesomeapi.com.br/all',
@@ -30,17 +29,17 @@ let updateMongoData = setInterval(() => {
 const currencyUpdateTask = async (req, res, next) => {
   try {
     const resCurry = await reqPromise(configAPIcall);
-    coins.forEach(code => {
-      Currency.find({code: code}, (err, coin) => {
-        if (!(coin)) {
+    coins.forEach(codeId => {
+      Currency.find({code: codeId}, (err, coin) => {
+        if (coin.length === 0) {
           const newCurrency = new Currency({
-            name:resCurry[code].name,
-            code:resCurry[code].code,
-            value:resCurry[code].bid,
+            name:resCurry[codeId].name,
+            code:resCurry[codeId].code,
+            value:resCurry[codeId].bid,
           });
           newCurrency.save((err, coin) => {
             if (err) res.json(err);
-            console.log(`Moeda salva: ${resCurry[code].name}`);
+            console.log(`Moeda salva: ${resCurry[codeId].name}`);
           });
         }
       });

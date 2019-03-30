@@ -34,7 +34,7 @@ exports.coin_update = (req, res) => {
 
 exports.coin_delete = (req, res) => {
   const codeId = req.params.code;
-  Currency.deleteMany({code: codeId}, err => {
+  Currency.deleteMany({}, err => {
     if (err) res.json(err);
     res.json({message: "deleteMany It's Rock N' Roll Baby!"});
   });

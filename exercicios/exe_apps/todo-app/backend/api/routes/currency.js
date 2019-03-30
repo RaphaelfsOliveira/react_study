@@ -13,6 +13,6 @@ module.exports = app => {
   .get(currency.coin_retrieve)
   .put(currency.coin_update)
 
-  app.route('/conversion/delete=:code')
+  app.route('/conversion/delete')
   .delete(currency.coin_delete);
 };
