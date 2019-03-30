@@ -11,7 +11,10 @@ const uri = {
   docker: 'mongodb://mongo:27017/todo',
 };
 
-const options = { useNewUrlParser: true };
+const options = {
+  useNewUrlParser: true,
+  autoIndex: false
+};
 
 // connectDB
 module.exports = mongoose.connect(uri.docker, options).then(
