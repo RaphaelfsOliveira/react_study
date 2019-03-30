@@ -1,10 +1,26 @@
 const mongoose = require('mongoose');
+const curryConversion = require('../models/currency');
 Currency = mongoose.model('Currency');
 
 // CONTROLLERS
 exports.coin_conversion = (req, res) => {
   console.log(req.params, typeof req.params);
-  res.json(req.params);
+  let from, to, amount;
+  from = req.params.from;
+  to = req.params.to;
+  amount = req.params.amount;
+
+
+  console.log(from, to, amount);
+
+  const convertVal = curryConversion(from, to, amount);
+  const test = {
+    test: convertVal,
+    params: req.params
+  }
+  console.log(convertVal);
+  if (err) res.json(err);
+  res.json(req.params);  
 };
 
 exports.coin_create = (req, res) => {
