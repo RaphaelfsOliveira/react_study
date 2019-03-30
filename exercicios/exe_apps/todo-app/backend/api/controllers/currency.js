@@ -33,9 +33,6 @@ exports.coin_list = (req, res) => {
   });
 };
 
-exports.coin_update = (req, res) => {
-};
-
 exports.coin_delete = (req, res) => {
   const codeId = req.params.code;
   Currency.deleteMany({}, err => {

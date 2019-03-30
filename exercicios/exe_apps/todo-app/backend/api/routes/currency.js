@@ -11,7 +11,6 @@ module.exports = app => {
 
   app.route('/conversion/:coinId')
   .get(currency.coin_retrieve)
-  .put(currency.coin_update)
 
   app.route('/conversion/delete')
   .delete(currency.coin_delete);
