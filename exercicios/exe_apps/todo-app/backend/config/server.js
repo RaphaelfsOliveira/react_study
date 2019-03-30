@@ -13,10 +13,4 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(allowCors);
 
-
-// init app
-app.listen(port, () => {
-  console.log(`Backend RESTFull API is running on port ${port}`);
-});
-
 module.exports = app;
