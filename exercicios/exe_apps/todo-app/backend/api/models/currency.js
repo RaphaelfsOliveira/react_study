@@ -1,13 +1,15 @@
 // IMPORTS
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 // Schemas
-const currencySchema = new mongoose.Schema({
+const CurrencySchema = new Schema({
   name: {
     type: String,
     required: true
   },
   code: {
+    index: true,
     type: String,
     required: true
   },
@@ -18,8 +20,12 @@ const currencySchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  },
+  }
 });
 
+CurrencySchema.methods.calcValue = function() {
+  return (1 / this.model('Currency').value);
+};
+
 // exports
-module.exports = mongoose.model('Currency', currencySchema);
+module.exports = mongoose.model('Currency', CurrencySchema);
