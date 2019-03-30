@@ -12,8 +12,7 @@ services:
       - ./:/usr/src/app
     ports:
       - "8000:8000"
-      - "80:80"
-    command: "npm run dev"
+    command: "npm run pm2-runtime"
     links:
       - mongo
   mongo:
