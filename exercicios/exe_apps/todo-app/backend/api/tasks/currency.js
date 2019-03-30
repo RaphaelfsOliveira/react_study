@@ -45,7 +45,7 @@ const currencyUpdateTask = async (req, res, next) => {
         }
       });
     });
-    console.log(`${mongoTask}: Moedas já adicionadas ao DB`);
+    console.log(`${mongoTask}: Base de dados Populada`);
   } catch (err) {
     console.log(err);
   }
