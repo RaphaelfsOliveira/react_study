@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 // Config Promise global
 mongoose.Promise = global.Promise;
 
-// npm run
-// module.exports = mongoose.connect('mongodb://localhost/todo', { useNewUrlParser: true });
+const mongoDB = {
+  npm: 'mongodb://localhost/todo',
+  docker: 'mongodb://mongo:27017/todo',
+};
 
-// docker-compose
-module.exports = mongoose.connect('mongodb://mongo:27017/todo', { useNewUrlParser: true });
+module.exports = mongoose.connect(mongoDB.docker, { useNewUrlParser: true });
