@@ -7,7 +7,7 @@
     "dev": "nodemon loader.js",
     "production": "pm2 start loader.js --name todo-backend",
     "production -i": "pm2 start loader.js -i 3 --name todo-backend",
-    "pm2-runtime": "pm2-runtime loader.js --name todo-backend",
+    "pm2-runtime": "pm2-runtime loader.js --watch --name todo-backend",
     "stop": "pm2 stop all",
     "kill": "pm2 kill",
     "monit": "pm2 monit"
