@@ -1,4 +1,4 @@
-##Hurb flask API
+##Hurb Node Conversion API
 É só executar os comandos abaixo
 
 ###API:
@@ -13,7 +13,7 @@ cd %folder%
 
 
 ####comando para instalar dependências
-sudo docker build --tag=play_node .
+sudo docker build --tag=Hurb_proj .
 
 
 ####comando para executar a aplicação

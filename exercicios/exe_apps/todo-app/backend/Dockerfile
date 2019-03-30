@@ -12,6 +12,6 @@ COPY . /usr/src/app
 
 EXPOSE 3000
 
-ENV NAME play_test_proj
+ENV NAME Hurb_proj
 
 CMD ["npm run dev"]
