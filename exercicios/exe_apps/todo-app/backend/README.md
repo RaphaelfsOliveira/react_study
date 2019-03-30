@@ -12,6 +12,10 @@ git clone && cd {{folder}}
 cd %folder%
 
 
+####cd $seu-fork
+sudo npm i
+
+
 ####comando para instalar dependências
 sudo docker build --tag=Hurb_proj .
 
