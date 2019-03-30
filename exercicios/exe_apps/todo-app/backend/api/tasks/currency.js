@@ -15,7 +15,7 @@ const configAPIcall = {
 let setMongoData = setTimeout(() => {
   console.log(`${mongoTask}: populando base de dados`);
   console.log(`${mongoTask}: ${Date()}`);
-  currencyUpdateTask();
+  currencySetTask();
   clearTimeout(setMongoData);
 }, 2000);
 
@@ -25,8 +25,7 @@ let updateMongoData = setInterval(() => {
   console.log(`${mongoTask}: periodo 4 min: ${Date()}`);
 }, 240000);
 
-
-const currencyUpdateTask = async (req, res, next) => {
+const currencySetTask = async (req, res, next) => {
   try {
     const resCurry = await reqPromise(configAPIcall);
     coins.forEach(codeId => {
@@ -38,7 +37,7 @@ const currencyUpdateTask = async (req, res, next) => {
             value:resCurry[codeId].bid,
           });
           newCurrency.save((err, coin) => {
-            if (err) res.json(err);
+            if (err) next(err);
             console.log(`Moeda salva: ${resCurry[codeId].name}`);
           });
         }
@@ -49,3 +48,5 @@ const currencyUpdateTask = async (req, res, next) => {
     console.log(err);
   }
 };
+
+const currencyUpdateTask = async (req, res, next) => {}
