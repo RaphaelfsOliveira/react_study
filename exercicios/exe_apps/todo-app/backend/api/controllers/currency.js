@@ -25,6 +25,10 @@ exports.coin_retrieve = (req, res) => {
 exports.coin_list = (req, res) => {
   Currency.find({}, (err, coin) => {
     if (err) res.json(err);
+    coin = {
+      'totalCount': coin.length,
+      'currencies': coin
+    }
     res.json(coin);
   });
 };
