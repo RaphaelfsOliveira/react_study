@@ -1,30 +1,38 @@
 ##Hurb Node Conversion API
 É só executar os comandos abaixo
 
-###API:
-https://docs.awesomeapi.com.br/api-de-moedas
 
 ####git clone $seu-fork
 git clone && cd {{folder}}
 
-
 ####cd $seu-fork
 cd %folder%
-
 
 ####cd $seu-fork
 sudo npm i
 
-
 ####comando para instalar dependências
 sudo docker build --tag=Hurb_proj .
-
 
 ####comando para executar a aplicação
 sudo docker-compose up
 
+Depois de subir o projeto use as urls definidas abaixo.
 
 
-Depois de subir o projeto vá a URL
+####Listagem de moedas
 
-- https://localhost:8090/
+Exemplo abaixo:
+
+- http://localhost:8000/conversion/
+
+
+#####Conversão de Moedas
+
+Parâmentros obrigatórios: `from=`, `to=`, `amount=`.
+
+Formatação do parâmentros: `from={ moeda }&to={ moeda }&amount={ valor }`.
+
+Exemplo abaixo:
+
+- http://localhost:8000/conversion/from=BRL&to=ARS&amount=3000
