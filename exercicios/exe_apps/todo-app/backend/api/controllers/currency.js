@@ -4,8 +4,6 @@ Currency = mongoose.model('Currency');
 
 // CONTROLLERS
 exports.coin_conversion = (req, res) => {
-  const curryArray = [];
-  const amount = req.params.amount;
   const curryParams = {
     from: null,
     to: null,
