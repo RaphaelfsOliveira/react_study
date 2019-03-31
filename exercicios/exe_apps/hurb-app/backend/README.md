@@ -4,7 +4,7 @@
 
 
 #### git clone $seu-fork:
-> git clone && cd {{folder}}
+> git clone https://github.com/RaphaelfsOliveira/challenge-bravo.git && cd {{folder}}
 
 
 
