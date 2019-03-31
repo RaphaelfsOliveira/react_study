@@ -35,6 +35,7 @@ const currencySetTask = async (req, res, next) => {
             name:resCurry[codeId].name,
             code:resCurry[codeId].code,
             value:resCurry[codeId].bid,
+            timestamp:resCurry[codeId].timestamp,
           });
           newCurrency.save((err, coin) => {
             if (err) next(err);

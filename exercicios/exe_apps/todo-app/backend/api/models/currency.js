@@ -20,24 +20,28 @@ const CurrencySchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  timestamp : {
+    type: String,
+    required: true
   }
 });
 
-CurrencySchema.methods.calcValue = function() {
-  return (1 / this.model('Currency').value);
-};
+const curryConversion = (params) => {
+  let fromCoin = params.from;
+  let toCoin = params.to;
+  let amount = params.amount;
+  console.log(params);
 
-const curryConversion = (from, to, amount) => {
-  let fromCoin = from;
-  let toCoin = to;
-  amount = amount
+  console.log('curryConversion', fromCoin, toCoin, amount);
 
   if (fromCoin && toCoin && amount) {
     return ((1/toCoin)/(1/fromCoin))*amount;
   }
-  return `Error need params`;
+  return `Error need params, from: ${fromCoin}, to: ${toCoin}, amount: ${amount}`;
 };
 
 // exports
 module.exports = mongoose.model('Currency', CurrencySchema);
+Currency = mongoose.model('Currency');
 module.exports = curryConversion;
