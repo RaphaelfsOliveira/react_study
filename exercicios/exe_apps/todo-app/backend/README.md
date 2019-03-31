@@ -23,7 +23,7 @@ sudo docker build --tag=Hurb_proj .
 
 
 
-###### comando para executar a aplicação:
+#### comando para executar a aplicação:
 sudo docker-compose up
 
 Depois de subir o projeto use as urls definidas abaixo.
@@ -31,14 +31,14 @@ Depois de subir o projeto use as urls definidas abaixo.
 
 
 
-###### Listagem de moedas
+##### Listagem de moedas
 
 Exemplo abaixo:
 
 - http://localhost:8000/conversion/
 
 
-###### Conversão de Moedas
+##### Conversão de Moedas
 
 Parâmentros obrigatórios: `from=`, `to=`, `amount=`.
 
