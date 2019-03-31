@@ -4,27 +4,27 @@
 
 
 #### git clone $seu-fork:
-git clone && cd {{folder}}
+> git clone && cd {{folder}}
 
 
 
 #### cd $seu-fork:
-cd %folder%
+> cd %folder%
 
 
 
 #### cd $seu-fork:
-sudo npm i
+> sudo npm i
 
 
 
 #### comando para instalar dependências:
-sudo docker build --tag=Hurb_proj .
+> sudo docker build --tag=Hurb_proj .
 
 
 
 #### comando para executar a aplicação:
-sudo docker-compose up
+> sudo docker-compose up
 
 Depois de subir o projeto use as urls definidas abaixo.
 
