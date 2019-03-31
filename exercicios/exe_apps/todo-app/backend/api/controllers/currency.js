@@ -46,7 +46,7 @@ exports.coin_list = (req, res) => {
       'currencies': coin
     }
     res.json(coin);
-  });
+  }).sort('code');
 };
 
 exports.coin_delete = (req, res) => {
