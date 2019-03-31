@@ -33,12 +33,12 @@ exports.coin_conversion = (req, res) => {
     }
   };
   getCurrenciesParamAW().then(data => {
-    console.log(
-      'getCurrenciesParamAW THEN',
-      curryParams.from[0].value,
-      curryParams.to[0].value,
-      curryParams.amount
-    );
+    console.log('  ');
+    console.log('#### ParamAW THEN ####');
+    console.log('FROM', curryParams.from[0].value);
+    console.log('TO', curryParams.to[0].value);
+    console.log('amount', curryParams.amount);
+    console.log('  ');
   });
 
 
