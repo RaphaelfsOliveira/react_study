@@ -24,19 +24,12 @@ exports.coin_conversion = (req, res) => {
     } catch (err) {
       console.log(`Error getCurrenciesParamAW: ${err}`);
     } finally {
-
-      console.log(
-        'getCurrenciesParamAW', curryParams
-      );
-
       const convertVal = curryConversion(curryParams);
-      console.log('curryConversion', convertVal);
 
       const resp = {
         conversionValue: convertVal,
         params: req.params
       }
-
       res.json(resp);
     }
   };
