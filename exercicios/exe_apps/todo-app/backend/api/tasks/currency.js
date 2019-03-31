@@ -13,8 +13,6 @@ const configAPIcall = {
 };
 
 let setMongoData = setTimeout(() => {
-  console.log(`${mongoTask} populando base de dados`);
-  console.log(`${mongoTask} ${Date()}`);
   currencySetTask();
   createBrlTask();
   clearTimeout(setMongoData);
@@ -22,11 +20,12 @@ let setMongoData = setTimeout(() => {
 
 
 let updateMongoData = setInterval(() => {
-  console.log(`${mongoTask} atualizando base de dados`);
-  console.log(`${mongoTask} periodo 4 min: ${Date()}`);
+  currencyUpdateTask();
 }, 240000);
 
 const currencySetTask = async (req, res, next) => {
+  console.log(`${mongoTask} populando base de dados`);
+  console.log(`${mongoTask} ${Date()}`);
   try {
     const resCurry = await reqPromise(configAPIcall);
     coins.forEach(codeId => {
@@ -68,4 +67,46 @@ const createBrlTask = async (req, res, next) => {
   });
 };
 
-const currencyUpdateTask = async (req, res, next) => {}
+const getCurrySync = coinCode => {
+  const coin = Currency.find({code: coinCode});
+  return coin;
+};
+
+const coinOutdated = (codeCoin, codeApi, tsCoin, tsApi) => {
+  return (codeCoin === codeApi && tsCoin !== tsApi);
+}
+
+const compareCurrency = (curryRes) => {
+  coins.forEach((codeId, i) => {
+    getCurrySync(codeId).exec((err, coin) => {
+
+      if (coinOutdated(coin[0].code, curryRes[codeId].code,
+      coin[0].timestamp, curryRes[codeId].timestamp)) {
+
+        Currency.updateOne({code: coin[0].code}, {
+          value: curryRes[codeId].value,
+          timestamp: curryRes[codeId].timestamp
+        }, (err, res) => {
+          console.log(`${mongoTask} Moeda atualizada: ${coin[0].name}}`);
+        });
+
+      }
+    });
+  });
+};
+
+const currencyUpdateTask = async () => {
+  let resCurry;
+
+  console.log(`${mongoTask} atualizando base de dados`);
+  console.log(`${mongoTask} periodo 4 min: ${Date()}`);
+
+  try {
+    resCurry = await reqPromise(configAPIcall);
+  } catch (err) {
+    console.log(`Error currencyUpdateTask: ${err}`);
+  } finally {
+    compareCurrency(resCurry);
+    return resCurry;
+  }
+};
