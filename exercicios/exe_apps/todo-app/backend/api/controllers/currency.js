@@ -4,23 +4,79 @@ Currency = mongoose.model('Currency');
 
 // CONTROLLERS
 exports.coin_conversion = (req, res) => {
-  console.log(req.params, typeof req.params);
-  let from, to, amount;
-  from = req.params.from;
-  to = req.params.to;
-  amount = req.params.amount;
+  const curryArray = [];
+  const amount = req.params.amount;
+  const curryParams = {
+    from: null,
+    to: null,
+    amount: req.params.amount
+  };
+
+  const getCurrencies = coinCode => {
+    const promise = Currency.find({code: coinCode}).exec();
+    return promise;
+  };
+
+  const getCurrenciesParamAW = async () => {
+    try {
+      curryParams.from = await getCurrencies(req.params.from);
+      curryParams.to = await getCurrencies(req.params.to);
+    } catch (err) {
+      console.log(`Error getCurrenciesParamAW: ${err}`);
+    } finally {
+      console.log(
+        'getCurrenciesParamAW',
+        curryParams.from[0].value,
+        curryParams.to[0].value,
+        curryParams.amount
+      );
+    }
+  };
+  getCurrenciesParamAW().then(data => {
+    console.log(
+      'getCurrenciesParamAW THEN',
+      curryParams.from[0].value,
+      curryParams.to[0].value,
+      curryParams.amount
+    );
+  });
 
 
-  console.log(from, to, amount);
+  console.log(curryParams);
 
-  const convertVal = curryConversion(from, to, amount);
-  const test = {
-    test: convertVal,
+  // [req.params.from, req.params.to].forEach(coinParams => {
+  //   const getPromise = getCurrencies(coinParams);
+  //
+  //   getPromise
+  //   .then(coinValue =>{
+  //     curryArray.push(coinValue[0].value);
+  //   })
+  //   .catch(err => {
+  //     console.log(`Error getPromise: ${err}`);
+  //   })
+  //   .finally(() => {
+  //     console.log('fechou a promesa');
+  //     console.log(curryArray, curryArray.length === 2);
+  //
+  //     if (curryArray.length === 2) {
+  //       curryArray.forEach((coin, i) => {
+  //         console.log(`Array: ${coin}, ${i}`);
+  //       });
+  //     }
+  //   });
+  // });
+
+
+
+  const convertVal = curryConversion(req.params);
+  console.log(convertVal);
+
+  const resp = {
+    currencyValue: convertVal,
     params: req.params
   }
-  console.log(convertVal);
-  if (err) res.json(err);
-  res.json(req.params);  
+
+  res.json(resp);
 };
 
 exports.coin_create = (req, res) => {
@@ -50,7 +106,6 @@ exports.coin_list = (req, res) => {
 };
 
 exports.coin_delete = (req, res) => {
-  const codeId = req.params.code;
   Currency.deleteMany({}, err => {
     if (err) res.json(err);
     res.json({message: "deleteMany It's Rock N' Roll Baby!"});
