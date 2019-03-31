@@ -34,7 +34,7 @@ const curryConversion = (params) => {
 
   if (fromCoin && toCoin && amount) {
     const calc = ((1/toCoin)/(1/fromCoin))*amount;
-    return Number.parseFloat(calc).toFixed(2);
+    return parseFloat(calc).toFixed(2);
   }
   return `Error need params, from: ${fromCoin}, to: ${toCoin}, amount: ${amount}`;
 };
