@@ -31,12 +31,10 @@ const curryConversion = (params) => {
   let fromCoin = params.from;
   let toCoin = params.to;
   let amount = params.amount;
-  console.log(params);
-
-  console.log('curryConversion', fromCoin, toCoin, amount);
 
   if (fromCoin && toCoin && amount) {
-    return ((1/toCoin)/(1/fromCoin))*amount;
+    const calc = ((1/toCoin)/(1/fromCoin))*amount;
+    return Number.parseFloat(calc).toFixed(2);
   }
   return `Error need params, from: ${fromCoin}, to: ${toCoin}, amount: ${amount}`;
 };
