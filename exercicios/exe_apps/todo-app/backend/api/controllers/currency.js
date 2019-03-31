@@ -19,64 +19,28 @@ exports.coin_conversion = (req, res) => {
 
   const getCurrenciesParamAW = async () => {
     try {
-      curryParams.from = await getCurrencies(req.params.from);
-      curryParams.to = await getCurrencies(req.params.to);
+      curryParams.from = (await getCurrencies(req.params.from))[0].value;
+      curryParams.to = (await getCurrencies(req.params.to))[0].value;
     } catch (err) {
       console.log(`Error getCurrenciesParamAW: ${err}`);
     } finally {
+
       console.log(
-        'getCurrenciesParamAW',
-        curryParams.from[0].value,
-        curryParams.to[0].value,
-        curryParams.amount
+        'getCurrenciesParamAW', curryParams
       );
+
+      const convertVal = curryConversion(curryParams);
+      console.log('curryConversion', convertVal);
+
+      const resp = {
+        conversionValue: convertVal,
+        params: req.params
+      }
+
+      res.json(resp);
     }
   };
-  getCurrenciesParamAW().then(data => {
-    console.log('  ');
-    console.log('#### ParamAW THEN ####');
-    console.log('FROM', curryParams.from[0].value);
-    console.log('TO', curryParams.to[0].value);
-    console.log('amount', curryParams.amount);
-    console.log('  ');
-  });
-
-
-  console.log(curryParams);
-
-  // [req.params.from, req.params.to].forEach(coinParams => {
-  //   const getPromise = getCurrencies(coinParams);
-  //
-  //   getPromise
-  //   .then(coinValue =>{
-  //     curryArray.push(coinValue[0].value);
-  //   })
-  //   .catch(err => {
-  //     console.log(`Error getPromise: ${err}`);
-  //   })
-  //   .finally(() => {
-  //     console.log('fechou a promesa');
-  //     console.log(curryArray, curryArray.length === 2);
-  //
-  //     if (curryArray.length === 2) {
-  //       curryArray.forEach((coin, i) => {
-  //         console.log(`Array: ${coin}, ${i}`);
-  //       });
-  //     }
-  //   });
-  // });
-
-
-
-  const convertVal = curryConversion(req.params);
-  console.log(convertVal);
-
-  const resp = {
-    currencyValue: convertVal,
-    params: req.params
-  }
-
-  res.json(resp);
+  getCurrenciesParamAW();
 };
 
 exports.coin_create = (req, res) => {
