@@ -3,7 +3,7 @@ const reqPromise = require('request-promise');
 Currency = mongoose.model('Currency');
 
 // TASKS
-const mongoTask = `[Task Mongo DB]`;
+const mongoTask = `[Task Jarvis]:`;
 
 const coins = ["AUD", "EUR", "USD", "GBP", "BTC", "CAD", "ARS", "LTC", "JPY", "CHF"];
 
@@ -13,16 +13,17 @@ const configAPIcall = {
 };
 
 let setMongoData = setTimeout(() => {
-  console.log(`${mongoTask}: populando base de dados`);
-  console.log(`${mongoTask}: ${Date()}`);
+  console.log(`${mongoTask} populando base de dados`);
+  console.log(`${mongoTask} ${Date()}`);
   currencySetTask();
+  createBrlTask();
   clearTimeout(setMongoData);
 }, 2000);
 
 
 let updateMongoData = setInterval(() => {
-  console.log(`${mongoTask}: atualizando base de dados`);
-  console.log(`${mongoTask}: periodo 4 min: ${Date()}`);
+  console.log(`${mongoTask} atualizando base de dados`);
+  console.log(`${mongoTask} periodo 4 min: ${Date()}`);
 }, 240000);
 
 const currencySetTask = async (req, res, next) => {
@@ -32,10 +33,10 @@ const currencySetTask = async (req, res, next) => {
       Currency.find({code: codeId}, (err, coin) => {
         if (coin.length === 0) {
           const newCurrency = new Currency({
-            name:resCurry[codeId].name,
-            code:resCurry[codeId].code,
-            value:resCurry[codeId].bid,
-            timestamp:resCurry[codeId].timestamp,
+            name: resCurry[codeId].name,
+            code: resCurry[codeId].code,
+            value: resCurry[codeId].bid,
+            timestamp: resCurry[codeId].timestamp,
           });
           newCurrency.save((err, coin) => {
             if (err) next(err);
@@ -44,10 +45,27 @@ const currencySetTask = async (req, res, next) => {
         }
       });
     });
-    console.log(`${mongoTask}: Base de dados Populada`);
+    console.log(`${mongoTask} Base de dados Populada`);
   } catch (err) {
     console.log(err);
   }
+};
+
+const createBrlTask = async (req, res, next) => {
+  Currency.find({code: 'BRL'}, (err, coin) => {
+    if (coin.length === 0) {
+      const newCurrency = new Currency({
+        name: 'Real Brasileiro',
+        code: 'BRL',
+        value: 1,
+        timestamp: 'fixo',
+      });
+      newCurrency.save((err, coin) => {
+        if (err) next(err);
+        console.log(`Moeda salva: ${coin.name}`);
+      });
+    }
+  });
 };
 
 const currencyUpdateTask = async (req, res, next) => {}
