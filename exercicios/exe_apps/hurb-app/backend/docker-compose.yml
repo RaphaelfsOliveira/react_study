@@ -5,7 +5,7 @@ services:
     user: "node"
     working_dir: /usr/src/app
     container_name: Hurb_Node_Mark_III
-    restart: always
+    # restart: always
     environment:
       - NODE_ENV=production
     volumes:
