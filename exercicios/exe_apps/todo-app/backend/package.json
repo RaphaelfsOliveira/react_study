@@ -5,7 +5,11 @@
   "main": "src/loader.js",
   "scripts": {
     "dev": "nodemon",
-    "production": "pm2 start src/loader.js --name todo-app"
+    "production": "pm2 start src/loader.js --name todo-app",
+    "production -i": "pm2 start src/loader.js -i 2 --name todo-app",
+    "stop": "pm2 stop all",
+    "kill": "pm2 kill",
+    "monit": "pm2 monit"
   },
   "keywords": [],
   "author": "",
