@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-pluguin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: './src/index.jsx',
@@ -21,23 +21,29 @@ module.exports = {
     new ExtractTextPlugin('app.css')
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /.js[x]?$/,
-        loader: 'babel-loader',
         exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react'],
-          plugins: ['transform-object-rest-spread']
+        use: {
+          loader: 'babel-loader',
+          query: {
+            presets: ['es2015', 'react'],
+            plugins: ['transform-object-rest-spread']
+          }
         }
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        use: {
+          loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        }
       },
       {
         test: /\.woff|.woff2|.ttf|.eot|.svg*.*$/,
-        loader: 'file'
+        use: {
+          loader: 'file'
+        }
       }
     ]
   }
