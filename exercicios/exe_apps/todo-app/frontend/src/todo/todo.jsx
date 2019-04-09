@@ -10,7 +10,6 @@ export default class Todo extends Component {
         <PageHeader name='Tarefas' small='Cadastro' />
         <TodoForm />
         <TodoList />
-
       </div>
     )
   }
