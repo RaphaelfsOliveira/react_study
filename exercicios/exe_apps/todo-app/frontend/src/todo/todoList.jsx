@@ -8,26 +8,24 @@ export default props => {
     const list = props.list || [];
 
     return list.map(todo => (
-      <div key={todo._id}>
+      <div key={todo._id} className='todoListDivider'>
           <Grid cols='12 6 6 6'>
-            {todo.description}
+            <label className={todo.done ? 'markedAsDone': ''}>
+              {todo.description}
+            </label>
           </Grid>
-          <Grid cols='4 2 2 2'>
-            <IconButton style='success' icon='check'
+          <Grid cols='12 6 6 6'>
+            <IconButton style='success' icon='check' hide={todo.done}
               onClick={() => props.handleMarkAsDone(todo)}>
             </IconButton>
-          </Grid>
-          <Grid cols='4 2 2 2'>
-            <IconButton style='warning' icon='undo'
+            <IconButton style='warning' icon='undo' hide={!todo.done}
               onClick={() => props.handleMarkAsPending(todo)}>
             </IconButton>
-          </Grid>
-          <Grid cols='4 2 2 2'>
-            <IconButton style='danger' icon='trash-o'
+            <IconButton style='danger' icon='trash-o' hide={!todo.done}
               onClick={() => props.handleRemove(todo)}>
             </IconButton>
           </Grid>
-          <br/><br/><br/>
+          <br/><br/>
       </div>
     ))
   }
@@ -39,14 +37,8 @@ export default props => {
         <Grid cols='12 6 6 6'>
           <b>Descrição</b>
         </Grid>
-        <Grid cols='4 2 2 2'>
-          <b>Feito</b>
-        </Grid>
-        <Grid cols='4 2 2 2'>
-          <b>Pendente</b>
-        </Grid>
-        <Grid cols='4 2 2 2'>
-          <b>Deletar</b>
+        <Grid cols='12 6 6 6'>
+          <b>Ações</b>
         </Grid>
       </div>
       <br/><br/>

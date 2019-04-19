@@ -1,0 +1,18 @@
+ .markedAsDone {
+  text-decoration: line-through;
+  color: #d1d1d1;
+ }
+
+.btn {
+  margin: 2px;
+}
+
+.todoListDivider {
+  border-top: solid 1px #d1d1d1;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+label {
+  padding-top: 9px;
+}
