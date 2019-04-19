@@ -20,14 +20,21 @@ export default class Todo extends Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.handleMarkAsDone = this.handleMarkAsDone.bind(this);
     this.handleMarkAsPending = this.handleMarkAsPending.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleClear = this.handleClear.bind(this);
 
     this.refresh();
   };
 
-  refresh() {
-    axios.get(`${URL}?sort=-createdAt`)
-    .then(resp => this.setState({...this.state, description: '', list: resp.data}))
+  refresh(description='') {
+    const search = description ? `&description__regex=/${description}/`: '';
+    axios.get(`${URL}?sort=-createdAt${search}`)
+    .then(resp => this.setState({...this.state, description, list: resp.data}))
     .catch(error => console.log(error));
+  };
+
+  handleSearch() {
+    this.refresh(this.state.description);
   };
 
   handleAdd() {
@@ -49,14 +56,18 @@ export default class Todo extends Component {
 
   handleMarkAsDone(todo) {
     axios.put(`${URL}/${todo._id}`, {...todo, done: true})
-    .then(resp => this.refresh())
+    .then(resp => this.refresh(this.state.description))
     .catch(error => console.log(error));
   };
 
   handleMarkAsPending(todo) {
     axios.put(`${URL}/${todo._id}`, {...todo, done: false})
-    .then(resp => this.refresh())
+    .then(resp => this.refresh(this.state.description))
     .catch(error => console.log(error));
+  };
+
+  handleClear() {
+    this.refresh();
   };
 
   render() {
@@ -64,9 +75,11 @@ export default class Todo extends Component {
       <div>
         <PageHeader name='Tarefas' small='Cadastro' />
         <TodoForm
-          handleAdd={this.handleAdd}
           description={this.state.description}
-          handleChange={this.handleChange}/>
+          handleAdd={this.handleAdd}
+          handleChange={this.handleChange}
+          handleSearch={this.handleSearch}
+          handleClear={this.handleClear}/>
         <TodoList
           list={this.state.list}
           handleMarkAsDone={this.handleMarkAsDone}
