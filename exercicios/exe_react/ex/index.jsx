@@ -12,12 +12,12 @@ const reducers = combineReducers({
 
 ReactDOM.render(
   <Provider store={createStore(reducers)}>
-    <Contador label='Contator' initialValue={10} />
+    <Field initialValue='escreva aqui' />
   </Provider>
   , document.getElementById('app')
 );
 
 ReactDOM.render(
-  <Field initialValue='escreva aqui' />
+  <Contador label='Contator' initialValue={10} />
   , document.getElementById('app2')
 );
