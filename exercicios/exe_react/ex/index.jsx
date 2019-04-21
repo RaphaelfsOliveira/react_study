@@ -15,9 +15,9 @@ ReactDOM.render(
     <Field initialValue='escreva aqui' />
   </Provider>
   , document.getElementById('app')
-);
+)
 
 ReactDOM.render(
   <Contador label='Contator' initialValue={10} />
   , document.getElementById('app2')
-);
+)
