@@ -13,8 +13,8 @@ export default class Contador extends Component {
   render() {
     return (
       <div>
-        <h1>{this.props.label}</h1>
-        <h2>{this.state.value}</h2>
+        <h5>{this.props.label}</h5>
+        <h4>{this.state.value}</h4>
         <button onClick={() => this.sum(-1)}>Dec</button>
         <button onClick={() => this.sum(1)}>Inc</button>
       </div>
