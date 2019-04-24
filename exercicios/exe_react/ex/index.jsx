@@ -7,18 +7,23 @@ import Contador from './contador'
 import Field from './field'
 import fieldReducer from './fieldReducer'
 
+import counterReducer from './counterReducer'
+import Counter from './counter'
+
 const reducers = combineReducers({
-  field: fieldReducer
+  counter: counterReducer
 })
+
+// ReactDOM.render(
+//   <Provider store={createStore(reducers)}>
+//     <Field initialValue='escreva aqui' />
+//   </Provider>
+//   , document.getElementById('app')
+// )
 
 ReactDOM.render(
   <Provider store={createStore(reducers)}>
-    <Field initialValue='escreva aqui' />
+    <Counter />
   </Provider>
-  , document.getElementById('app')
-)
-
-ReactDOM.render(
-  <Contador label='Contator' initialValue={10} />
   , document.getElementById('app2')
 )
