@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const URL = 'http://localhost:3003/api/todos'
+const URL = 'http://localhost:3003/api/todos/'
 
 export const changeDescription = event => ({
   type: 'DESCRIPTION_CHANGED',
@@ -17,8 +17,8 @@ export const search = () => {
 
 export const add = description => {
   const request = axios.post(URL, { description })
-  return {
-    type: 'TODO_ADDED',
-    payload: request
-  }
+  return [
+    { type: 'TODO_ADDED', payload: request },
+    search()
+  ]
 }
