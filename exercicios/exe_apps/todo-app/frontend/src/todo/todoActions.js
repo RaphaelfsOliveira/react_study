@@ -48,8 +48,5 @@ export const remove = (todo, description) => {
 }
 
 export const clear = () => {
-  return dispatch => {
-    dispatch({ type: 'TODO_CLEAR' })
-    dispatch(search())
+  return [{ type: 'TODO_CLEAR' }, search()]
   }
-}
