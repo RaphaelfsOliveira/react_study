@@ -1,0 +1,34 @@
+{
+  "name": "my-money-app-frontend",
+  "version": "1.0.0",
+  "description": "'app for billing cycles'",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon loader.js",
+    "production": "pm2 start loader.js --watch --name my-money-backend",
+    "production -i": "pm2 start loader.js -i 3 --name my-money-backend",
+    "pm2-runtime": "pm2-runtime loader.js --watch --name my-money-backend",
+    "stop": "pm2 stop all",
+    "kill": "pm2 kill",
+    "status": "pm2 status",
+    "monit": "pm2 monit"
+  },
+  "keywords": [
+    "app"
+  ],
+  "author": "Raphael Oliveira",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-query-int": "^1.0.1",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.7.0",
+    "mongoose-paginate": "^5.0.3",
+    "node-restful": "^0.2.5",
+    "pm2": "^2.1.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
