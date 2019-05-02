@@ -7,5 +7,5 @@ module.exports = server => {
   server.use('/api', router)
 
   // Routes BillingCycle
-  BillingCycle.register(router, '/billingCycle')
+  BillingCycle.register(router, '/billingCycles')
 }
