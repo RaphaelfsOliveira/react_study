@@ -1,6 +1,5 @@
 const BillingCycle = require('./billingCycle')
-
-BillingCycle.methods(['get', 'post', 'put', 'delete'])
+const errorHandler = require('../common/errorHandler')
 
 // updateOptions:
 // new -> faz a api retornar sempre o objeto atualizado depois
@@ -8,7 +7,9 @@ BillingCycle.methods(['get', 'post', 'put', 'delete'])
 // runValidators -> roda a validação de campos tambem na
 // atualização, por padrão o mongo só roda as validaçõe
 // de campo na inclusão de um reistro
+BillingCycle.methods(['get', 'post', 'put', 'delete'])
 BillingCycle.updateOptions({ new: true, runValidators: true })
+BillingCycle.after('post', errorHandler).after('put', errorHandler)
 
 BillingCycle.route('count', (req, res, next) => {
   BillingCycle.count((error, value) => {
