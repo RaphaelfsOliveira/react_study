@@ -28,13 +28,13 @@ module.exports = {
     new ExtractTextPlugin('app.css')
   ],
   module: {
-    loaders [{
+    loaders: [{
       test: /.js[x]?$/,
       loader: 'babel-loader',
-      exclude: 'node_modules',
+      exclude: /node_modules/,
       query: {
         presets: ['es2015', 'react'],
-        pluguins: ['transform-object-rest-spread']
+        plugins: ['transform-object-rest-spread']
       }
     }, {
       test: /\.css$/,
